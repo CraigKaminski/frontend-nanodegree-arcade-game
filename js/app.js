@@ -7,9 +7,12 @@ var Enemy = function() {
     // The x and y coordinates of the enemy. The x value is
     // random negative multiple of the enemy's width. This
     // prevents all the enemies from appearing at the same time.
-    // The y value is randomly generated to place the enemy
-    // in one of the three stone rows.
     this.x = (Math.floor(Math.random() * 3) + 1) * -101;
+
+    // The y value is randomly generated to place the enemy
+    // in one of the three stone rows. An extra 25 pixels
+    // is subtracted at the end so the enemy lines up with the
+    // row it is in.
     this.y = (Math.floor(Math.random() * 3) + 1) * 83 - 25;
 
     // The speed at with the enemy moves.
@@ -24,8 +27,8 @@ Enemy.prototype.update = function(dt) {
     this.x += dt * this.speed;
 
     // If the x value of the enemy will result in the enemy
-    // being off the screen, move the enemy back to the left
-    // side of the board.
+    // being off the screen, move the enemy back to a random
+    // position on the left side of the board.
     if (this.x > 506) {
         this.x = (Math.floor(Math.random() * 3) + 1) * -101;
         this.y = (Math.floor(Math.random() * 3) + 1) * 83 - 25;
@@ -44,6 +47,8 @@ var Player = function () {
 
     // The x and y coordinates of the player.
     this.x = 2 * 101;
+    // 35 pixels are subtracted from the y coordinate
+    // so the player lines up with the row it is in.
     this.y = 5 * 83 - 35;
 };
 
@@ -93,7 +98,7 @@ Player.prototype.handleInput = function(direction) {
 
 // Create array to hold enemies, instantiate enemies, and
 // store them in array.
-var allEnemies = new Array();
+var allEnemies = [];
 for (var i = 0; i < 3; i++) {
     allEnemies.push(new Enemy());
 }
