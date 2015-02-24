@@ -1,6 +1,9 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+This is a simple frogger like game. The goal of the game is for the player to
+reach the water at the top of the screen without touching one of the enemies.
+If the player hits one of the enemies, they will be sent back to the starting
+point at the bottom.
 
-for self-checking their submission.
+The player is controlled by the arrow keys on the keyboard.
