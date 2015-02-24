@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -95,6 +95,25 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function. It loops through the enemies
+     * to make sure none of them have collided with the player. If a
+     * collision has occurred, create a new player object.
+    */
+    function checkCollisions() {
+        for (var i = 0; i < allEnemies.length; i++) {
+            // First check to see if the enemy and player on the same row.
+            if (player.y == allEnemies[i].y - 10) {
+                // Check to see if the player and enemy x coordinates
+                // overlap.
+                if (player.x + 30 < allEnemies[i].x + 101 &&
+                    player.x + 101 - 30 > allEnemies[i].x)
+                {
+                    player = new Player();
+                }
+            }
+        }
     }
 
     /* This function initially draws the "game level", it will then call
