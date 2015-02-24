@@ -103,15 +103,12 @@ var Engine = (function(global) {
     */
     function checkCollisions() {
         for (var i = 0; i < allEnemies.length; i++) {
-            // First check to see if the enemy and player on the same row.
-            if (player.y == allEnemies[i].y - 10) {
-                // Check to see if the player and enemy x coordinates
-                // overlap.
-                if (player.x + 30 < allEnemies[i].x + 101 &&
-                    player.x + 101 - 30 > allEnemies[i].x)
-                {
-                    player = new Player();
-                }
+            // First check to see if the enemy and player are on the same row
+            // and then check to see if the x values overlap.
+            if (player.y == allEnemies[i].y - 10
+                && player.x + 30 < allEnemies[i].x + 101
+                && player.x + 101 - 30 > allEnemies[i].x) {
+                player = new Player();
             }
         }
     }
